@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-xl)bp8q$#=j%h&rt3rhx%c!!-w!-mbgs-slx@0+z#xtzxjjy@%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wordhuntr.herokuapp.com']
+ALLOWED_HOSTS = ['wordhuntr.herokuapp.com', 'localhost']
 
 
 # Application definition
