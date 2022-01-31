@@ -1,0 +1,56 @@
+{% extends 'wordhunt/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% block css %}
+    <link rel="stylesheet" type='text/css' href="{% static 'learn/word_pool.css' %}">
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    <div class='mb-3'>
+        <table class="table" id='table-1'>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Original Word</th>
+                <th scope="col">Translated</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for d in data_tr_en %}
+              <tr>
+                <th scope="row">{{ forloop.counter0 }}</th>
+                <td>{{ d.1 }}</td>
+                <td>{{ d.0 }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <table class="table" id='table-2'>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Original Word</th>
+                <th scope="col">Translated</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for d in data_en_tr %}
+              <tr>
+                <th scope="row">{{ forloop.counter0 }}</th>
+                <td>{{ d.1 }}</td>
+                <td>{{ d.0 }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+    {% endblock %}
+</body>
+</html>

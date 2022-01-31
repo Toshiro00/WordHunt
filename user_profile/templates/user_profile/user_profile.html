@@ -1,0 +1,30 @@
+{% extends 'wordhunt/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% block css %}
+    <link rel="stylesheet" type='text/css' href="{% static 'user_profile/user_profile.css' %}">
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    <div class="card mb-3" style="width: 18rem;">
+        {% if user.is_authenticated %}
+        <div class="card-header">Hoşgeldin {{ user.username|title }}</div>
+        {% endif %}
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Havuzunda {{ total }} kelime var.</li>
+          <li class="list-group-item">Doğru cevapladığın {{ right }} kelime.</li>
+          <li class="list-group-item">Hatalı olan {{ wrong }} kelime.</li>
+          <li class="list-group-item">Yeni öğrenebileceğin {{ new_words }} kelime.</li>
+        </ul>
+      </div>
+    {% endblock %}
+</body>
+</html>

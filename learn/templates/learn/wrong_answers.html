@@ -1,0 +1,40 @@
+{% extends 'wordhunt/base.html' %}
+{% load static %}
+{% load wrong_answers %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% block css %}
+    <link rel="stylesheet" type='text/css' href="{% static 'learn/wrong_answers.css' %}">
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    {% wrong_answer as question %}
+    <div class="mb-4">
+        <h1>{{ question.0 }}</h1>
+    </div>
+    <div class="mb-3">
+        <form action="/wronganswers/" method="post">
+            {% csrf_token %}
+            <input type="text" name="answer" placeholder="Cevabınız">
+            <input name='org_answer' value={{ question.1 }} type='hidden'>
+            <input name='question_id' value={{ question.2 }} type='hidden'>
+            {% if messages %}
+            {% for message in messages %}
+            <p {% if message.tags %} class={{ message.tags }} {% endif %}>
+            {{ message }}
+            {% endfor %}</p>
+            {% endif %}
+            <div class="mb-5">
+                <button type="submit" class="btn btn-primary">OK</button>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

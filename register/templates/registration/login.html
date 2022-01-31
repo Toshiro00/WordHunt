@@ -1,0 +1,28 @@
+{% extends 'wordhunt/base.html' %}
+{% load static %}
+<html>
+    <head>
+        {% block title %}
+        Login Here
+        {% endblock %}
+        {% block css %}
+        <link rel="stylesheet" type='text/css' href="{% static 'register/login.css' %}">
+        {% endblock %}
+    </head>
+    <body>
+        {% load crispy_forms_tags %} 
+        
+        {% block content %} 
+        <div class='c_form'>
+            <form method='post' class='uniForm'>
+                {% csrf_token %} 
+                {{ form | crispy }}
+                <p> Don't have an account? Create one <a href='/register'>here</a></p>
+                <button type='submit' class='btn btn-success'>Login</button>
+            </form>
+        </div>
+        {% endblock %}
+    </body>
+</html>
+
+

@@ -1,0 +1,39 @@
+{% extends 'wordhunt/base.html' %}
+{% load static %}
+{% load new_words %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% block css %}
+    <link rel="stylesheet" type='text/css' href="{% static 'learn/new_word.css' %}">
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    {% new_word as word %}
+    <div class="mb-3">
+        <form action="" method="post" id='form-1'>
+            {% csrf_token %}
+            <h1 class="t1" >{{ word.1 }}</h1>
+            <h1 class="divider"></li>
+            <h1 class="t2" >{{ word.0 }}</h1>
+            <input type="hidden" name='english' value='{{word.1}}'>
+            <input type="hidden" name='turkish' value='{{word.0}}'>
+        </form>
+    </div>
+    <div class="mb-4">
+        {% if messages %}
+        {% for message in messages %}
+        <p {% if message.tags %} class={{ message.tags }} {% endif %}>
+        {{ message }}
+        {% endfor %}</p>
+        {% endif %}
+        <button type="submit" class="btn btn-primary" form=form-1>OK</button>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% extends 'wordhunt/base.html' %}
+{% load static %}
+{% load random_pool %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}
+    <link rel="stylesheet" type='text/css' href="{% static 'learn/word_pool_quiz.css' %}">
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    
+    {% random_question as word %}
+    <div class="mb-3">
+        <div class="mb-4">
+            <form action="" method="post" class='form-1'>
+                <h1 class="question">{{ word.0 }}</h1>
+                <input name='question' value='{{ word.0 }}' type='hidden'>
+                <input name='language' value='{{ word.2 }}' type='hidden'>
+                <input name='answer' value='{{ word.3 }}' type='hidden'>
+                {% csrf_token %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="option" id="flexRadioDefault1" value='{{word.1.0}}'>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      {{word.1.0}}
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="option" id="flexRadioDefault2" value='{{word.1.1}}'>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      {{word.1.1}}
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="option" id="flexRadioDefault3" value='{{word.1.2}}'>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      {{word.1.2}}
+                    </label>
+                  </div>
+                  {% if messages %}
+                  {% for message in messages %}
+                  <p {% if message.tags %} class={{ message.tags }} {% endif %}>
+                  {{ message }}
+                  {% endfor %}</p>
+                  {% endif %}
+                  <div class="mb-5">
+                    <button type="submit" class="btn btn-primary">OK</button>
+                  </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>
