@@ -2,8 +2,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from .forms import RegisterForm
-
-
+from django.contrib import messages
 
 def register(request):
 
@@ -17,6 +16,7 @@ def register(request):
             password = form.cleaned_data.get('password')
             form.save()
             try:
+                messages.add_message(request, messages.SUCCESS, 'Kullanıcı oluşturuldu giriş yapabilirsiniz.')
                 user = User.objects.create_user(username=username, email=email, password=password)
             except:
                 user = None
