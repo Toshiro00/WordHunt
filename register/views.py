@@ -3,22 +3,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import get_user_model
 from .forms import RegisterForm
 
-from pathlib import Path
-import os
 
-from django.contrib.staticfiles import finders
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-
-User = get_user_model()
 
 def register(request):
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    print('Base Directory : ', os.path.join(BASE_DIR, 'static/'))
 
-    result = finders.find('register/register.css')
-    print(result)
-    print('S : ', finders.searched_locations)
+    User = get_user_model()
 
     if request.method == 'POST':
         form = RegisterForm(request.POST)
