@@ -123,8 +123,6 @@ def word_pool(request):
 
 @login_required()
 def new_word(request):
-
-
     # Set translation direction
     language = '[EN-TR]'
 
