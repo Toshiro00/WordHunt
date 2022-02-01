@@ -30,7 +30,7 @@ def translate_page(request):
 
 
             # Get user input
-            text = form.cleaned_data.get('word')
+            text = form.cleaned_data.get('word').title()
 
             if text == '':
                 messages.add_message(request, messages.ERROR, 'Input can not be null')
@@ -42,6 +42,7 @@ def translate_page(request):
                     text = translate_text('en', 'tr', text)
                 else:
                     raise form.errors
+
 
                 # Get translated value from API
                 text = text.json()['responseData']['translatedText']
